@@ -40,7 +40,7 @@
       become: yes
 
     - name: Apply sed command to package.json
-      command: sed -i .bak '1 r /root/package_fix.sed' package.json
+      command: sed -i .bak '1 r /root/fix_package_json.sed' package.json
       args:
         chdir: /root/nginx-ui/app
       become: yes

@@ -2,14 +2,14 @@
 
 
 echo "install Ansible"
-pip install /root/crypto/pycparser-2.21-py2.py3-none-any.whl
-pip install /root/crypto/cffi-1.16.0-cp39-cp39-freebsd_13_1_release_p9_amd64.whl
-pip install /root/crypto/cryptography-42.0.2-cp39-cp39-freebsd_13_1_release_p9_amd64.whl
-python3 -m pip install --user ansible-core
+pip install --root-user-action=ignore /root/crypto/pycparser-2.21-py2.py3-none-any.whl
+pip install --root-user-action=ignore /root/crypto/cffi-1.16.0-cp39-cp39-freebsd_13_1_release_p9_amd64.whl
+pip install --root-user-action=ignore /root/crypto/cryptography-42.0.2-cp39-cp39-freebsd_13_1_release_p9_amd64.whl
+python3 -m pip install --user --root-user-action=ignore ansible-core
 echo "Update PATH"
 set path = ( $path /root/.local/bin )
-setenv INVENTORY_UNPARSED_WARNING False
-setenv LOCALHOST_WARNING False
+setenv ANSIBLE_INVENTORY_UNPARSED_WARNING False
+setenv ANSIBLE_LOCALHOST_WARNING False
 # ansible-galaxy collection install community.general
 echo "Run install instructions usin Ansible"
 ansible-playbook /root/nginxui.yaml
