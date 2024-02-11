@@ -1,0 +1,38 @@
+#!/bin/sh
+#
+# PROVIDE: nginx_ui
+# REQUIRE: LOGIN
+# KEYWORD: shutdown
+
+. /etc/rc.subr
+
+name="nginx_ui"
+rcvar="nginx_ui_enable"
+
+load_rc_config $name
+
+: ${nginx_ui_enable="NO"}
+
+command="/root/nginx-ui/nginx-ui"
+command_args="-config /root/nginx-ui/app.ini"
+pidfile="/var/run/${name}.pid"
+logfile="/var/log/nginx_ui.log"
+
+procname="${command}"
+
+command_interpreter="/usr/sbin/daemon"
+
+start_cmd="${name}_start"
+stop_cmd="${name}_stop"
+
+nginx_ui_start() {
+    echo "Starting ${name}."
+    ${command_interpreter} -o ${logfile} -P ${pidfile} -- ${command} ${command_args}
+}
+
+nginx_ui_stop() {
+    echo "Stopping ${name}."
+    kill -TERM $(cat ${pidfile})
+}
+
+run_rc_command "$1"
