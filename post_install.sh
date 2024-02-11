@@ -5,6 +5,8 @@ echo "install Ansible"
 python3 -m pip install --user ansible-core
 echo "Update PATH"
 set path = ( $path /root/.local/bin )
+setenv INVENTORY_UNPARSED_WARNING False
+setenv LOCALHOST_WARNING False
 # ansible-galaxy collection install community.general
 echo "Run install instructions usin Ansible"
 ansible-playbook /root/nginxui.yaml
