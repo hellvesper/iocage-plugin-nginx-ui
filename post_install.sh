@@ -2,6 +2,9 @@
 
 
 echo "install Ansible"
+pip install /root/crypto/pycparser-2.21-py2.py3-none-any.whl
+pip install /root/crypto/cffi-1.16.0-cp39-cp39-freebsd_13_1_release_p9_amd64.whl
+pip install /root/crypto/cryptography-42.0.2-cp39-cp39-freebsd_13_1_release_p9_amd64.whl
 python3 -m pip install --user ansible-core
 echo "Update PATH"
 set path = ( $path /root/.local/bin )
