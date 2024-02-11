@@ -5,7 +5,7 @@ echo "install Ansible"
 pip install --root-user-action=ignore /root/crypto/pycparser-2.21-py2.py3-none-any.whl
 pip install --root-user-action=ignore /root/crypto/cffi-1.16.0-cp39-cp39-freebsd_13_1_release_p9_amd64.whl
 pip install --root-user-action=ignore /root/crypto/cryptography-42.0.2-cp39-cp39-freebsd_13_1_release_p9_amd64.whl
-python3 -m pip install --user --root-user-action=ignore ansible-core
+python3 -m pip install --user --root-user-action=ignore --no-warn-script-location ansible-core
 echo "Update PATH"
 set path = ( $path /root/.local/bin )
 setenv ANSIBLE_INVENTORY_UNPARSED_WARNING False
