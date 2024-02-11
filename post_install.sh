@@ -6,8 +6,8 @@ python3 -m pip install --user ansible-core
 echo "Update PATH"
 set path = ( $path /root/.local/bin )
 # ansible-galaxy collection install community.general
-echo "Run install instructions"
-ansible-playbook nginxui.yaml
+echo "Run install instructions usin Ansible"
+ansible-playbook /root/nginxui.yaml
 
 
 # npm install -g pnpm
