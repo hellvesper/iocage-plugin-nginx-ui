@@ -11,7 +11,7 @@ set path = ( $path /root/.local/bin )
 setenv ANSIBLE_INVENTORY_UNPARSED_WARNING False
 setenv ANSIBLE_LOCALHOST_WARNING False
 # ansible-galaxy collection install community.general
-echo "Run install instructions usin Ansible"
+echo "Run install instructions using Ansible"
 ansible-playbook /root/nginxui.yaml
 
 
