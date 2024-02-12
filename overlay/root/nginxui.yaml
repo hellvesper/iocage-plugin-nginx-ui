@@ -39,13 +39,13 @@
       command: mv nginx-ui-2.0.0-beta.14 nginx-ui
       become: yes
 
-    - name: Apply sed command to package.json
+    - name: Apply FreeBSD patch to package.json
       command: sed -i .bak '1 r /root/fix_package_json.sed' package.json
       args:
         chdir: /root/nginx-ui/app
       become: yes
 
-    - name: Install dependencies
+    - name: Install UI dependencies
       command: pnpm install
       args:
         chdir: /root/nginx-ui/app
@@ -65,6 +65,12 @@
 
     - name: Fetch nginx-ui binary
       command: fetch https://transfer.sh/LD9tEazX7E/nginx-ui
+      args:
+        chdir: /root/nginx-ui
+      become: yes
+
+    - name: Make binary executable
+      command: chmod +x nginx-ui
       args:
         chdir: /root/nginx-ui
       become: yes
