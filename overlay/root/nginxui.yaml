@@ -142,3 +142,7 @@
     - name: Start nginx-ui service
       command: service nginx-ui start 
       become: yes
+
+    - name: Start mDNSResponser service
+      command: service mdnsresponderposix start
+      become: yes
