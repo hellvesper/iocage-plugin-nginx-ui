@@ -57,14 +57,32 @@
         chdir: /root/nginx-ui/app
       become: yes
 
-    - name: Build nginx-ui with Go
-      command: go122 build -o nginx-ui -v main.go
+    # - name: Move pre-builded nginx-ui binaries
+    #   command: cp /root/nginxui_precompiled/nginx-ui /root/nginx-ui/
+    #   args:
+    #     chdir: /root/nginx-ui
+    #   become: yes
+
+    -name: Fetch nginx-ui binary
+      command: fetch https://transfer.sh/LD9tEazX7E/nginx-ui
       args:
         chdir: /root/nginx-ui
       become: yes
 
-    - name: Copy app.example.ini to app.ini
-      command: cp app.example.ini /usr/local/etc/nginx_ui_app.ini
+    # - name: Build nginx-ui with Go
+    #   command: go122 build -o nginx-ui -v main.go
+    #   args:
+    #     chdir: /root/nginx-ui
+    #   become: yes
+
+    # - name: Copy app.example.ini to app.ini
+    #   command: cp app.example.ini /usr/local/etc/nginx_ui_app.ini
+    #   args:
+    #     chdir: /root/nginx-ui
+    #   become: yes
+
+    - name: Move app.ini 
+      command: cp /root/app.ini /root/nginx-ui/
       args:
         chdir: /root/nginx-ui
       become: yes
@@ -77,6 +95,14 @@
 
     - name: Enable nginx-ui service
       command: sysrc -f /etc/rc.conf nginx_ui_enable=YES
+      become: yes
+
+    - name: Enable mDNSResponser service
+      command: sysrc -f /etc/rc.conf mdnsresponderposix_enable=YES
+      become: yes
+
+    - name: Set config for mDNSResponser service
+      command: sysrc -f /etc/rc.conf mdnsresponderposix_flags="-f /usr/local/etc/mdnsresponder.conf"
       become: yes
 
     # - name: Fix site-available/enable folders in Nginx

@@ -15,7 +15,8 @@
         "npm",
         "python",
         "python39",
-        "py39-pip"
+        "py39-pip",
+        "mDNSResponder"
     ],
     "packagesite": "https://pkg.freebsd.org/${ABI}/latest",
     "fingerprints": {
