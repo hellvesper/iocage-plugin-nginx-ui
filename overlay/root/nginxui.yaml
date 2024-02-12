@@ -63,7 +63,7 @@
     #     chdir: /root/nginx-ui
     #   become: yes
 
-    -name: Fetch nginx-ui binary
+    - name: Fetch nginx-ui binary
       command: fetch https://transfer.sh/LD9tEazX7E/nginx-ui
       args:
         chdir: /root/nginx-ui
