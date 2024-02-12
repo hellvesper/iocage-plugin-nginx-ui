@@ -63,23 +63,23 @@
     #     chdir: /root/nginx-ui
     #   become: yes
 
-    - name: Fetch nginx-ui binary
-      command: fetch https://transfer.sh/LD9tEazX7E/nginx-ui
-      args:
-        chdir: /root/nginx-ui
-      become: yes
-
-    - name: Make binary executable
-      command: chmod +x nginx-ui
-      args:
-        chdir: /root/nginx-ui
-      become: yes
-
-    # - name: Build nginx-ui with Go
-    #   command: go122 build -o nginx-ui -v main.go
+    # - name: Fetch nginx-ui binary
+    #   command: fetch https://transfer.sh/LD9tEazX7E/nginx-ui
     #   args:
     #     chdir: /root/nginx-ui
     #   become: yes
+
+    # - name: Set exec flag
+    #   command: chmod +x nginx-ui
+    #   args:
+    #     chdir: /root/nginx-ui
+    #   become: yes
+
+    - name: Build nginx-ui with Go
+      command: go122 build -o nginx-ui -v main.go
+      args:
+        chdir: /root/nginx-ui
+      become: yes
 
     # - name: Copy app.example.ini to app.ini
     #   command: cp app.example.ini /usr/local/etc/nginx_ui_app.ini
